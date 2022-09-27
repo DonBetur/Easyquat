@@ -39,11 +39,32 @@ int main()
     Q.L2=sin(A.rx/2)*cos(A.ry/2)*cos(A.rz/2)-cos(A.rx/2)*sin(A.ry/2)*sin(A.rz/2);
     Q.L3=cos(A.rx/2)*sin(A.ry/2)*cos(A.rz/2)-sin(A.rx/2)*cos(A.ry/2)*sin(A.rz/2);
 
-    cout << "Значения углов поворота"<<endl;
-    cout << "(" << A.rx << " , " << A.ry << " , " << A.rz << ")"<<endl;
-    cout << "Полученные значения кватерниона"<< endl;
-    cout << "(" << Q.L0 << " , " << Q.L1 << " , " << Q.L2 << " , " << Q.L3 << ")"<<endl;
+    A.rx=A.rx/(Pi/180);
+    A.ry=A.ry/(Pi/180);
+    A.rz=A.rz/(Pi/180);
+	
+double a11=pow(Q.L0,2)+pow(Q.L1,2)-pow(Q.L2,2)-pow(Q.L3,2);
+double a22=pow(Q.L0,2)+pow(Q.L2,2)-pow(Q.L1,2)-pow(Q.L3,2);
+double a33=pow(Q.L0,2)+pow(Q.L3,2)-pow(Q.L1,2)-pow(Q.L2,2);
+double a12=2*Q.L1*Q.L2+Q.L0*Q.L3;
+double a13=2*Q.L1*Q.L3-Q.L0*Q.L2;
+double a21=2*Q.L1*Q.L2-Q.L0*Q.L3;
+double a23=2*Q.L2*Q.L3+Q.L0*Q.L1;
+double a31=2*Q.L1*Q.L3+Q.L0*Q.L2;
+double a32=2*Q.L2*Q.L3-Q.L0*Q.L1;
 
+    cout << "Значения углов поворота"<<endl;
+    cout << "(" << A.rx << " , " << A.ry << " , " << A.rz << ")"<<endl<<endl;
+
+    cout << "Кватернион:"<<endl;
+    cout << "( " << Q.L0 << " , " << Q.L1 << " , "<< Q.L2 << " , "<< Q.L3 << " )"<< endl<<endl; 
+
+    cout <<"Аналитически:"<<endl;
+    cout<< "Л= " << Q.L0 << " + " << Q.L1 << "*i +  "<< Q.L2 << "*j +  "<< Q.L3 << "*k "<< endl<<endl;
+
+    cout << "| " << a11 << " " << a12 << " " << a13 << " |" << endl;
+    cout << "| " << a21 << " " << a22 << " " << a23 << " |" << endl;
+    cout << "| " << a31 << " " << a32 << " " << a33 << " |" << endl;
     return 0;
 
 }
